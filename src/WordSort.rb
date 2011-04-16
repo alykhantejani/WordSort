@@ -1,9 +1,15 @@
 # encoding: utf-8
 module WordSort
 
+	def self.sort_words(words)
+		words.each_with_index {|word, i|
+			
+		}
+	end
+		
 	def self.word_sort(word)
 		map = Hash.new {|hash, key| hash[key]= Array.new}
-		if(word.respond_to?(:each_byte) and word.respond_to?(:[]) and word.respond_to?(:[]=))
+		if(word.respond_to?(:codepoints))
 			word.codepoints {|val| 
 				key = hash(val)
 				map[key].push(val.chr("utf-8"))
