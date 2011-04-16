@@ -1,12 +1,6 @@
 # encoding: utf-8
 module WordSort
-
-	def self.sort_words(words)
-		words.each_with_index {|word, i|
-			
-		}
-	end
-		
+	
 	def self.word_sort(word)
 		map = Hash.new {|hash, key| hash[key]= Array.new}
 		if(word.respond_to?(:codepoints))
@@ -40,8 +34,5 @@ module WordSort
 		end
 	end
 	
-	if __FILE__ == $0
-		puts WordSort.word_sort("£$&*(%AfksdBaDwe")
-	end
 end
 
