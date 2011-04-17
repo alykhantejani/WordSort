@@ -7,19 +7,19 @@ module WordSort
 			codepoint = nil
 			key = nil
 			words.each {|word|
-				codepoint = getCodepoint(word, i)
+				codepoint = get_codepoint(word, i)
 				key = hash(codepoint)
 				map[key].push(word)
 			}
-			words.clear!
+			words.clear
 			(-1...63).each {|j|
-				words.push!(map[i]) if map.has_key? i
+				words.push(map[j]) if map.has_key? j
 			}
-			words.flatten
+			words.flatten!
 		end
 	end
 	
-	def sort(words)
+	def self.sort(words)
 		max_length = get_max_length(words)
 		max_length.times {|i|
 			sort_words(words, i)		
@@ -46,7 +46,7 @@ module WordSort
 	def self.hash(ascii_val)
 		case ascii_val
 			when -1
-				then -1
+				then 0
 			when (0...9) 
 				then ascii_val+1
 			when (65...90) 
@@ -54,7 +54,7 @@ module WordSort
 			when (97...122)
 				then 12+2*(ascii_val-97)
 			else
-				0
+				-1
 		end
 	end
 	
