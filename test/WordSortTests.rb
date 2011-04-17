@@ -4,32 +4,23 @@ require '../src/WordSort.rb'
 
 class WordSortTests < Test::Unit::TestCase
 
-	def setup
-		@@word1 = "cdba"
-		@@expected1 = "abcd"
+	def test_get_codepoint
+		codepoint =	WordSort.get_codepoint("abcd", 1)
+		assert_equal(98, codepoint)
+		codepoint = WordSort.get_codepoint("abcd", 0)
+		assert_equal(97, codepoint)
+		codepoint = WordSort.get_codepoint("abcd", 5)
+		assert_equal(-1, codepoint)
 		
-		@@word2 = "£$&*(%AfksdBaDwe"
-		@@expected2 = "£$&*(%AaBDdefksw"
-		
-		@@word3 = "abcdABCD"
-		@@expected3 = "AaBbCcDd"
-		
-		@@word4 = "AaBbCcDd"
-		@@expected4 = "AaBbCcDd"
+		codepoint = WordSort.get_codepoint("£$£", 0)
+		assert_equal(163, codepoint)
 	end
-
-	def testWordSort
-		sorted = WordSort.word_sort(@@word1)
-		assert_equal(@@expected1, sorted)
-		
-		sorted = WordSort.word_sort(@@word2)
-		assert_equal(@@expected2, sorted)
-
-		sorted = WordSort.word_sort(@@word3)
-		assert_equal(@@expected3, sorted)
-
-		sorted = WordSort.word_sort(@@word4)
-		assert_equal(@@expected4, sorted)
-	end	
-
+	
+	def test_get_max_length
+		words = ["abcdedfg", "", "£$££", "freofk!$£$"]
+		max_length = WordSort.get_max_length(words)
+		assert_equal(10, max_length)
+	end
+	
+	
 end
